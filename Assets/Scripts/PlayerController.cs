@@ -7,20 +7,24 @@ public class PlayerController : MonoBehaviour
     // ilk hýz degiskenim
     public float speed = 5.0f;
     public float turnSpeed;
+    public float horizontalInput;
+    public float forwardInput;
 
-    private void Awake()
-    {
-    }
 
     void Start()
     {
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        // aracý ileri saða sola haraket ettir
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
-        transform.Translate(Vector3.right * Time.deltaTime * turnSpeed);
+        horizontalInput = Input.GetAxis("Horizontal");
+        forwardInput = Input.GetAxis("Vertical");
+
+        // araci ileri saga sola hareket etme
+        transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
+        transform.Translate(Vector3.right * Time.deltaTime * turnSpeed * horizontalInput);
     }
 }
